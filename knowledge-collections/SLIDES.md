@@ -43,7 +43,7 @@ Before we begin, make sure you can access the CUNY AI Lab Sandbox.
 
 **Label:** Before We Start
 
-Knowledge collections attach to a model card in Workspace > Models. Complete these steps before we go further. The model card is the foundation everything else builds on today.
+Knowledge collections attach to a model card in Workspace > Models. After you build your collection, complete these steps to bring everything together.
 
 1. **Go to Workspace > Models:** Click + New Model to create one, or open the model card you built last week
 2. **Name the model card:** Give it a descriptive name tied to your course, for example ENGL 101 Writing Scaffold or History 202 Source Analysis Tool
@@ -68,7 +68,7 @@ Your model is saved. Now test it to make sure it responds as expected before att
 3. Choose your newly created model from the list
 4. Send a test message related to your course and observe the response
 
-**Look for:** Does the model respond in the voice you configured? Does your system prompt shape the tone and approach of the answer?
+**Look for:** Does your custom model respond as expected? How has your system prompt shaped its output?
 
 **Stage:** Screenshot placeholder (testing a custom model in chat)
 
@@ -84,11 +84,11 @@ A **knowledge collection** is a set of documents you upload to ground an AI mode
 
 **Key distinction:** The *system prompt* tells the model how to behave. The *knowledge collection* tells it what to draw on. Together, they create a tool grounded in your teaching context.
 
-**Your model is ready. Now give it something to draw on.** By the end of today, your knowledge collection will be attached directly to the model you just opened.
+*Next we'll show you where to find knowledge collections in the Sandbox and how to curate and use them with pedagogical intent.*
 
 ---
 
-## Slide 7 -- Where It Lives (`layout-split`)
+## Slide 7 -- Where to Find Knowledge Collections (`layout-split`)
 
 **Label:** Open WebUI
 
@@ -115,11 +115,11 @@ A student asks: **"What should I focus on for the midterm essay?"**
 
 **Without Knowledge Collection** *(appears first)*
 "For a midterm essay, you should generally focus on your thesis statement, use evidence from your readings, and structure your argument clearly. Make sure to address counterarguments."
-*Generic advice. No awareness of the assignment, the rubric, or the course readings.*
+*Generic advice. No connection to the assignment or the course readings.*
 
 **With Knowledge Collection** *(revealed on next advance)*
-"Based on the assignment prompt, your essay should analyze one primary source from the Reconstruction unit using the SOAPS framework we practiced. The rubric weights evidence and sourcing at 40%. Which document are you considering?"
-*Grounded in the actual assignment, rubric, and course methodology.*
+"Based on the assignment prompt, your essay should analyze one primary source from the Reconstruction unit using the SOAPS framework we practiced. The prompt emphasizes evidence and sourcing. Which document are you considering?"
+*Grounded in the actual assignment and course methodology.*
 
 ---
 
@@ -127,7 +127,7 @@ A student asks: **"What should I focus on for the midterm essay?"**
 
 **Label:** Building Materials
 
-Any document that helps the AI understand your course context. The Sandbox runs on open-weight models with zero data retention: nothing you upload persists beyond the active session.
+Uploaded files ground AI models in context and help shape their responses. These documents are stored on CUNY's self-hosted servers and made private by default.
 
 | Document Type | Description |
 |---------------|-------------|
@@ -137,7 +137,7 @@ Any document that helps the AI understand your course context. The Sandbox runs 
 | Course Readings | Primary sources, articles, chapters, and excerpts students are working with |
 | Lecture Notes | Key concepts, frameworks, and terminology from your lectures |
 | Style Guides | Citation formats, disciplinary conventions, writing guidelines |
-| Sample Work | Anonymized exemplars that model the quality you expect |
+| Sample Work | Exemplars that model the kinds of work you expect |
 | Data Sets | Spreadsheets, CSV files, or structured data students analyze in labs or projects |
 | Glossaries | Discipline-specific terminology, definitions, and key concepts for the course |
 | Problem Sets | Exercises, practice questions, or worked examples with solutions |
@@ -158,8 +158,8 @@ When a student asks a question, the system doesn't feed the entire collection to
 
 - **Chunking:** Your documents are split into smaller passages when uploaded
 - **Search:** The student's question is matched against those passages
-- **Injection:** The top matches are included in the model's context window
-- **Response:** The model generates an answer grounded in those passages
+- **Injection:** Closest matches appended to model's context window
+- **Response:** Model generates output grounded in retrieved passages
 
 **Implication:** Short, focused documents with clear headings retrieve better than long, unstructured files. In other words, the way you organize your materials matters.
 
@@ -179,9 +179,9 @@ Starting with Composition & Writing
 **Weak:** Collection contains only `syllabus.pdf` (14 pages)
 
 **What goes wrong?**
-- One large document retrieves poorly: the model pulls random passages instead of relevant ones
-- No assignment-specific materials for the model to reference
-- No rubric, no readings, no examples of what good work looks like
+- One large document retrieves poorly: retrieved passages are often irrelevant
+- No assignment context for the revision task
+- No readings or reference materials for the model to draw on
 
 ---
 
@@ -189,17 +189,17 @@ Starting with Composition & Writing
 
 **Label:** Composition & Writing (progression: 2 of 3)
 
-**Getting There:** Collection contains syllabus.pdf, essay-1-prompt.pdf, essay-1-rubric.pdf, mla-style-guide.pdf
+**Getting There:** Collection contains syllabus.pdf, essay-1-prompt.pdf, mla-style-guide.pdf
 
 **What improved?**
-- Separate documents for different purposes: the model can find the rubric when asked about grading
-- Assignment-specific prompt gives the model context for that unit
+- Separate documents let the model find what it needs
+- Assignment prompt gives the model context for the revision task
 - Style guide helps with formatting questions
 
 **What's still missing?**
 - No course readings for the model to reference during analysis
-- No examples of strong student work to model expectations
-- No instructor notes on common student challenges
+- No common feedback patterns to guide revision
+- No instructor notes on what substantive revision looks like in this course
 
 ---
 
@@ -210,7 +210,7 @@ Starting with Composition & Writing
 **Strong collection with three layers:**
 
 Course Framework: syllabus.pdf, revision-philosophy.txt
-Assignment Materials (Essay 1: Rhetoric in Popular Media): essay-1-prompt.pdf, essay-1-rubric.pdf, common-feedback.txt
+Assignment Materials (Essay 1: Rhetoric in Popular Media): essay-1-prompt.pdf, common-feedback.txt
 Reference Materials: mla-style-guide.pdf, strong-intro-examples.txt, revision-checklist.pdf
 
 ---
@@ -230,7 +230,7 @@ Reference Materials: mla-style-guide.pdf, strong-intro-examples.txt, revision-ch
 **What goes wrong?**
 - A full textbook chapter is too long and too general: retrieved passages are often irrelevant
 - No primary sources for the model to help students analyze
-- No methodological framework for the model to follow
+- No framework like SOAPS for the model to scaffold source analysis
 
 ---
 
@@ -247,7 +247,7 @@ Reference Materials: mla-style-guide.pdf, strong-intro-examples.txt, revision-ch
 
 **What's still missing?**
 - No contextual background for the model to draw on when students ask about the period
-- No rubric or analysis framework to guide the model's scaffolding
+- No SOAPS framework or equivalent to guide source analysis
 - No source metadata (author, date, document type) to support sourcing questions
 
 ---
@@ -258,7 +258,7 @@ Reference Materials: mla-style-guide.pdf, strong-intro-examples.txt, revision-ch
 
 **Strong collection with three layers:**
 
-Course Framework: syllabus.pdf, soaps-framework.txt, source-analysis-rubric.pdf
+Course Framework: syllabus.pdf, soaps-framework.txt
 Primary Sources (Reconstruction Unit): freedmens-bureau-report-1866.pdf (with metadata), congressional-testimony-1871.pdf (with metadata), source-context-notes.txt
 Reference Materials: period-timeline.txt, common-analysis-errors.txt, chicago-citation-guide.pdf
 
@@ -278,7 +278,7 @@ Reference Materials: period-timeline.txt, common-analysis-errors.txt, chicago-ci
 
 **What goes wrong?**
 - A 180-page file retrieves unpredictably: the model might pull from the wrong text entirely
-- No assignment context or analytical framework
+- No assignment context or close-reading framework
 - No separation between literary texts and critical essays
 
 ---
@@ -295,9 +295,9 @@ Reference Materials: period-timeline.txt, common-analysis-errors.txt, chicago-ci
 - Critical framework document gives the model methodological grounding
 
 **What's still missing?**
-- No rubric for the model to reference when guiding analysis
-- No examples of close-reading annotations or model analyses
-- No glossary of literary terms the course uses
+- No annotated examples showing how to move from observation to interpretation
+- No key terms for the current unit (e.g., tension, irony, ambiguity)
+- No instructor notes on what close reading looks like in this course
 
 ---
 
@@ -307,8 +307,8 @@ Reference Materials: period-timeline.txt, common-analysis-errors.txt, chicago-ci
 
 **Strong collection with three layers:**
 
-Course Framework: syllabus.pdf, new-criticism-framework.txt, literary-terms-glossary.txt
-Assignment Materials (Close Reading Essay): close-reading-assignment.pdf, close-reading-rubric.pdf, annotated-passage-example.txt
+Course Framework: syllabus.pdf, new-criticism-framework.txt
+Assignment Materials (Close Reading Essay): close-reading-assignment.pdf, annotated-passage-example.txt
 Literary Texts (Current Unit): sonny-blues-baldwin.pdf, passage-selections.txt
 
 ---
@@ -317,10 +317,10 @@ Literary Texts (Current Unit): sonny-blues-baldwin.pdf, passage-selections.txt
 
 **Section label:** Part II
 
-- **One Document, One Purpose:** Upload separate files for syllabus, rubric, readings, and frameworks. The model retrieves better from focused documents than from large omnibus files.
-- **Add Metadata and Headings:** Include titles, authors, dates, and clear section headings. These act as retrieval anchors that help the model find the right passage.
-- **Write What the Model Can't Infer:** The model doesn't know your pedagogical intent. A short "common-feedback.txt" or "context-notes.txt" written in your own words is more valuable than another PDF.
-- **Update Per Unit:** Swap readings and assignment materials as the semester progresses. A collection grounded in the current unit is more useful than one covering the whole course.
+- **One Document, One Purpose:** Upload separate files; focused documents retrieve better than omnibus ones
+- **Add Metadata and Headings:** Titles, authors, dates, and section headings serve as retrieval anchors
+- **Supply What's Not in the Documents:** Include meta documents like "common-feedback.txt" that signpost how to use sources in the collection
+- **Update Per Unit:** Swap course materials as the semester progresses; up-to-date collections outperform semester-wide ones
 
 ---
 
@@ -328,10 +328,10 @@ Literary Texts (Current Unit): sonny-blues-baldwin.pdf, passage-selections.txt
 
 **Label:** Watch Out
 
-- **Dumping Everything In:** Uploading every reading for the entire semester dilutes retrieval quality. More documents means more noise. Start small and add materials as you test.
-- **One Giant PDF:** A 200-page course reader retrieves unpredictably. Split it into individual texts. Short, well-labeled documents retrieve far better than long ones.
-- **Forgetting the System Prompt:** A knowledge collection without a system prompt is a pile of documents with no instructions. The system prompt tells the model how to use the materials.
-- **Assuming the Model Read Everything:** The model only sees retrieved passages, not the full document. If something is critical, make it easy to retrieve: put it in its own file with a clear heading.
+- **Dumping Everything In:** Uploading every reading dilutes retrieval; start small and add materials as you test
+- **One Giant PDF:** A 200-page course reader retrieves unpredictably; short, well-labeled documents work far better
+- **Forgetting the System Prompt:** Without explicit instructions for drawing on the collection, it is just a pile of documents
+- **Assuming Full Coverage:** Only retrieved passages appear in each response; if something is critical, give it its own file
 
 ---
 
@@ -342,11 +342,9 @@ Literary Texts (Current Unit): sonny-blues-baldwin.pdf, passage-selections.txt
 
 Pick one assignment from your course. You will build a knowledge collection for it, one layer at a time.
 
-**Step 0: Your model is already open.** You configured it at the start of the workshop. Keep it in a second tab. You'll attach your collection to it at the end of this exercise.
-
-1. **Course Framework:** Syllabus, learning objectives, and the analytical framework students use
-2. **Assignment Materials:** Prompts, rubrics, examples, and common feedback patterns
-3. **Source Materials:** Readings, primary sources, and reference documents for the current unit
+1. **Course Context:** Syllabus sections, weekly schedule
+2. **Assignment Materials:** Instructions, feedback examples
+3. **Source Materials:** Excerpted readings, primary sources
 
 ---
 
@@ -354,11 +352,11 @@ Pick one assignment from your course. You will build a knowledge collection for 
 
 **Label:** Step 1
 
-Start with the documents that establish your course's identity: what students are learning, how they're assessed, and what methods they use.
+These documents give the model a picture of your course: its goals, structure, and the methods students are expected to use.
 
 - What are the course's learning objectives?
-- What analytical framework or methodology do students use?
-- What are the course policies the model should know about?
+- What analytical framework or methodology is central to the course?
+- What course-level context would help the model support those goals?
 
 **Template (copyable):**
 ```
@@ -366,11 +364,9 @@ Recommended uploads:
 
 1. syllabus.pdf
    - Course schedule, objectives, and policies
-   - Tip: Keep it under 10 pages if possible
 
 2. [framework-name].txt
    - The analytical method students use
-   - E.g., SOAPS, New Criticism, revision checklist
    - Write it out in plain language with definitions
 ```
 
@@ -382,31 +378,27 @@ Recommended uploads:
 
 **Label:** Step 2
 
-Upload the documents that define the current task. The model needs to know what students are working on, how they're graded, and where they typically struggle.
+These documents define the current task and help the model align its responses with your specific learning objectives.
 
-- What is the assignment prompt?
-- What does the rubric prioritize?
-- What feedback do you give most often?
+- What does the assignment ask students to do?
+- What does strong work on this assignment look like?
+- What patterns come up most often in your feedback?
 
 **Template (copyable):**
 ```
 Recommended uploads:
 
 1. [assignment]-prompt.pdf
-   - The actual assignment instructions
+   - The assignment instructions
 
-2. [assignment]-rubric.pdf
-   - Grading criteria with level descriptions
-
-3. common-feedback.txt
+2. common-feedback.txt
    - 5-10 patterns you see every semester
-   - E.g., "Thesis too broad," "Evidence cited but not analyzed"
 
-4. strong-examples.txt (optional)
-   - Anonymized excerpts showing what good work looks like
+3. strong-examples.txt (optional)
+   - Excerpts showing what strong work looks like
 ```
 
-**Your turn:** Pick one assignment. Upload the prompt and rubric. Then write a short list of the feedback you give most often.
+**Your turn:** Which assignment stands to benefit? Try curating assignment instructions alongside a shortlist of common feedback patterns for starters.
 
 ---
 
@@ -430,11 +422,9 @@ Recommended uploads:
 
 2. context-notes.txt (optional)
    - 2-3 sentences of context per source
-   - Helps the model answer "why does this matter?"
 
 3. [reference-guide].pdf
-   - Citation style guide, glossary, timeline
-   - Whatever students consult during the assignment
+   - Citation style guide, glossary, or timeline
 ```
 
 **Your turn:** Upload 1-3 readings for your chosen assignment. If they're in a single PDF reader, split them into separate files first.
@@ -448,10 +438,10 @@ Recommended uploads:
 Your system prompt and knowledge collection work together. The prompt defines *behavior*. The collection provides *context*.
 
 **System Prompt:**
-"You are a writing revision scaffold for ENGL 101. When a student shares a draft, ask them to identify which rubric criterion they want to work on first. Reference the rubric and common-feedback documents before responding."
+"You are a writing revision scaffold for ENGL 101. When a student shares a draft, ask them to identify which area they want to work on first. Reference the assignment prompt and common-feedback documents before responding."
 
 **Knowledge Collection:**
-syllabus.pdf, revision-philosophy.txt, essay-1-prompt.pdf, essay-1-rubric.pdf, common-feedback.txt, mla-style-guide.pdf, strong-intro-examples.txt
+syllabus.pdf, revision-philosophy.txt, essay-1-prompt.pdf, common-feedback.txt, mla-style-guide.pdf, strong-intro-examples.txt
 
 **Test it:** Ask the model a question only answerable from your collection. If it gives generic advice, the retrieval isn't working. Check your document structure.
 

@@ -7,7 +7,7 @@
   .layout-split > .stage { padding: clamp(16px, 2vh, 24px); }
   .carousel-item img {
     max-width: 96%;
-    max-height: 60vh;
+    max-height: 55vh;
   }
 }
 
@@ -51,7 +51,7 @@
 
   .carousel-item img {
     max-width: 98%;
-    max-height: 55vh;
+    max-height: 50vh;
   }
 
   body.overview-mode .slide { width: calc(50% - 8px); }
@@ -60,7 +60,7 @@
 @media (max-width: 480px) {
   .carousel-item img {
     max-width: 100%;
-    max-height: 50vh;
+    max-height: 45vh;
   }
   html { font-size: 75%; }
   body { font-size: 0.95rem; }
