@@ -2,10 +2,19 @@
 
 Generic, fillable template for building faculty workshop slide decks following the CUNY AI Lab workshop series pattern.
 
-**Use this template when:**
-- Creating a new 3-part workshop series deck
+## Two Template Variants
+
+| Variant | Directory | Engine | Best For |
+|---------|-----------|--------|----------|
+| **Custom Deck** | `template/` | Hand-built JS (deck-engine, carousel, scrubber, tabs) | Multi-week series decks with screenshot carousels, prompt progressions, copy-able exercise templates |
+| **Reveal.js** | `template-reveal/` | Reveal.js 4.5.0 (CDN) | Single-session workshops, live coding demos, vertical slide groups, timing badges for facilitators |
+
+Both variants include: `index.html` (source of truth), `SLIDES.md` (markdown mirror), `CLAUDE.md` (agent guidance).
+
+**Use these templates when:**
+- Creating a new workshop deck (pick the variant that fits)
 - Building additional workshop variations
-- Standardizing new decks to match system-prompting and knowledge-collections architecture
+- Standardizing new decks to match existing CUNY AI Lab architecture
 
 ---
 
