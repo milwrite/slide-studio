@@ -990,7 +990,87 @@
 <!-- ==========================================
      SLIDE 33 — THE ROAD AHEAD
      ========================================== -->
-<div class="slide layout-full-dark closing-slide" role="group" aria-roledescription="slide" aria-label="Slide 33: The Road Ahead" data-slide="closing" tabindex="-1">
+<!-- ==========================================
+     SLIDE 33 — RESOURCES
+     ========================================== -->
+<div class="slide layout-split" role="group" aria-roledescription="slide" aria-label="Slide 33: Resources &amp; Further Reading" data-slide="resources" tabindex="-1">
+  <div class="split-text">
+    <span class="label label-cyan">Go Deeper</span>
+    <h2>Resources &amp; Further Reading</h2>
+    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75em; margin-top: 1em;">
+      <li>
+        <a href="https://cuny-ai-lab.github.io/knowledge-collections/" target="_blank" style="color: var(--accent-cyan); text-decoration: underline; text-underline-offset: 3px; font-weight: 600;">Workshop Deck (this one)</a>
+        <p style="font-size: 0.85em; color: var(--light-text-50); margin: 0.15em 0 0;">cuny-ai-lab.github.io/knowledge-collections</p>
+      </li>
+      <li>
+        <a href="https://ailab.gc.cuny.edu" target="_blank" style="color: var(--accent-cyan); text-decoration: underline; text-underline-offset: 3px; font-weight: 600;">CUNY AI Lab</a>
+        <p style="font-size: 0.85em; color: var(--light-text-50); margin: 0.15em 0 0;">ailab.gc.cuny.edu</p>
+      </li>
+      <li>
+        <a href="https://ui.raphaelsalaja.com" target="_blank" style="color: var(--accent-cyan); text-decoration: underline; text-underline-offset: 3px; font-weight: 600;">User Interface Wiki</a>
+        <p style="font-size: 0.85em; color: var(--light-text-50); margin: 0.15em 0 0;">152 rules across animation, UX, CSS, and typography — ui.raphaelsalaja.com</p>
+      </li>
+      <li>
+        <a href="https://milwrite.github.io/creative-clawing/" target="_blank" style="color: var(--accent-cyan); text-decoration: underline; text-underline-offset: 3px; font-weight: 600;">Creative Clawing Gallery</a>
+        <p style="font-size: 0.85em; color: var(--light-text-50); margin: 0.15em 0 0;">Generative and computational art artifacts — milwrite.github.io/creative-clawing</p>
+      </li>
+    </ul>
+  </div>
+  <div class="split-visual" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5em;">
+    <p style="font-size: 0.72em; color: var(--light-text-50); letter-spacing: 0.06em; text-transform: uppercase; margin: 0;">Animation Easing Demo</p>
+    <canvas id="easing-demo" width="340" height="260" style="border-radius: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);"></canvas>
+    <p style="font-size: 0.68em; color: var(--light-text-50); margin: 0; text-align: center;">Spring vs. linear vs. ease-out — timing shapes how interactions feel</p>
+  </div>
+</div>
+<script>
+(function(){
+  var canvas = document.getElementById('easing-demo');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height;
+  var t = 0;
+  var curves = [
+    { label: 'Spring', color: '#4fc3f7', fn: function(x){ var b=0.35; return 1 - Math.exp(-b*x*10)*Math.cos(18*x*0.3); } },
+    { label: 'Ease-out', color: '#81c784', fn: function(x){ return 1 - Math.pow(1-x,3); } },
+    { label: 'Linear', color: '#ef9a9a', fn: function(x){ return x; } }
+  ];
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    var pad = { l: 38, r: 18, t: 22, b: 36 };
+    var gw = W - pad.l - pad.r, gh = H - pad.t - pad.b;
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
+    for (var i = 0; i <= 4; i++) {
+      var y = pad.t + gh*(i/4); ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(pad.l+gw,y); ctx.stroke();
+      var x = pad.l + gw*(i/4); ctx.beginPath(); ctx.moveTo(x,pad.t); ctx.lineTo(x,pad.t+gh); ctx.stroke();
+    }
+    ctx.fillStyle='rgba(255,255,255,0.3)'; ctx.font='9px ui-monospace,monospace';
+    ctx.textAlign='right'; ctx.fillText('1.0',pad.l-4,pad.t+4); ctx.fillText('0',pad.l-4,pad.t+gh+4);
+    ctx.textAlign='left'; ctx.fillText('time →',pad.l,pad.t+gh+14);
+    curves.forEach(function(c){
+      ctx.beginPath(); ctx.strokeStyle=c.color; ctx.lineWidth=2;
+      for(var i=0;i<=100;i++){
+        var px=pad.l+gw*(i/100), py=pad.t+gh*(1-Math.min(1.3,Math.max(-0.1,c.fn(i/100))));
+        if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+      }
+      ctx.stroke();
+      var dotT=t%1, dotX=pad.l+gw*dotT, dotV=Math.min(1.3,Math.max(-0.1,c.fn(dotT))), dotY=pad.t+gh*(1-dotV);
+      ctx.beginPath(); ctx.arc(dotX,dotY,4,0,Math.PI*2); ctx.fillStyle=c.color; ctx.fill();
+    });
+    curves.forEach(function(c,i){
+      ctx.fillStyle=c.color; ctx.beginPath(); ctx.arc(pad.l+8,pad.t+8+i*16,4,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle='rgba(255,255,255,0.65)'; ctx.font='9px ui-monospace,monospace'; ctx.textAlign='left';
+      ctx.fillText(c.label,pad.l+16,pad.t+12+i*16);
+    });
+    t+=0.004; requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<!-- ==========================================
+     SLIDE 34 — THE ROAD AHEAD
+     ========================================== -->
+<div class="slide layout-full-dark closing-slide" role="group" aria-roledescription="slide" aria-label="Slide 34: The Road Ahead" data-slide="closing" tabindex="-1">
   <span class="label label-cyan">Coming Up</span>
   <h2>The Road Ahead</h2>
   <div class="roadmap">
@@ -1020,7 +1100,7 @@
 <nav id="nav-bar" aria-label="Slide navigation">
   <button id="arrow-prev" class="arrow-btn" aria-label="Previous slide" title="Previous slide (&larr;)">&#8592;</button>
   <span class="nav-info"><strong id="nav-current">1</strong> / <span id="nav-total"></span></span>
-  <div id="scrubber-container" class="scrubber-container" role="slider" aria-label="Slide progress" aria-valuemin="1" aria-valuemax="33" aria-valuenow="1" aria-valuetext="Slide 1 of 33" tabindex="0">
+  <div id="scrubber-container" class="scrubber-container" role="slider" aria-label="Slide progress" aria-valuemin="1" aria-valuemax="34" aria-valuenow="1" aria-valuetext="Slide 1 of 34" tabindex="0">
     <div class="scrubber-track">
       <div id="scrubber-progress" class="scrubber-progress"></div>
       <div class="scrubber-thumb">
